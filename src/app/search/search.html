@@ -1,0 +1,5 @@
+<input type="search" [(ngModel)]="search" (ngModelChange)="onsearch($event)">
+
+@for (item of newtest; track $index) {
+    <p>{{item}}</p>
+}

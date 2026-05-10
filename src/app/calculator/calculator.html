@@ -1,0 +1,62 @@
+<div class="h-screen bg-black text-white ">
+<div class="flex justify-center items-center pb-4 h-screen flex-col">
+        <section class="flex sm:w-1/3 w-full h-screen flex-col ">
+            <div class="text-white h-5 transition-all  " >{{firstNumber}}</div>
+            <div class="flex grow">
+                <span>{{operator}}</span>
+                <div class="  mb-3 overflow-y-auto  text-white">
+                {{display|number:'1.'}}
+            </div>
+            </div>
+            <main class="grid  gap-2">
+
+                <div class="grid grid-cols-4 grid-rows-5 col-span-4 justify-center items-stretch w-full h-full gap-2  ">
+                    <button class="text-blue-600 bg-gray-900  transition-all active:bg-gray-950 p-2 rounded-lg"
+                        (click)="cleartext()" id="clear">c</button>
+                    <button class="text-blue-600 bg-gray-900 active:bg-gray-950 transition-all p-2 rounded-lg"
+                        (click)="action('/')">/</button>
+                    <button class="text-blue-600 bg-gray-900 active:bg-gray-950 transition-all p-2 rounded-lg"
+                        (click)="action('*')">*</button>
+                        <button class="p-2 bg-gray-900 active:bg-gray-950 transition-all rounded-lg "
+                        (click)="deleteText()">delete</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="number('7')">7</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="number('8')">8</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="number('9')">9</button>
+                         <button class="p-4 px-5 bg-gray-900 active:bg-gray-950 transition-all rounded-lg "
+                        (click)="action('-')">-</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="number('4')">4</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="number('5')">5</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="number('6')">6</button>
+                         <button class="p-4 px-5 bg-gray-900 active:bg-gray-950 transition-all rounded-lg "
+                        (click)="action('+')">+</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="number('1')">1</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="number('2')">2</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="number('3')">3</button>
+                        
+                    <button class="bg-blue-600 grow active:bg-blue-700 transition-all rounded-lg row-span-2"
+                        (click)="equal()">=</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="adddot('.')">.</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="number('0')">0</button>
+                    <button class="bg-gray-900 active:bg-gray-950 transition-all p-4 rounded-lg px-5"
+                        (click)="percentNumber('%')">%</button>
+                </div>
+                <div class="flex flex-col gap-2 col-span-1">
+                    
+                   
+                   
+                </div>
+            </main>
+        </section>
+    </div>
+</div>

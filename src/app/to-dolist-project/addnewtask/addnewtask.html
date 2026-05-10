@@ -1,0 +1,18 @@
+ 
+<main class="   flex justify-center  items-center ">
+<section class="flex justify-center gap-2 items-center flex-col  ">
+
+
+<img src="assets/Icon.svg" alt="">
+
+    <div class="text-lg font-medium tracking-normal leading-5">No Tasks Yet</div>
+    <div class="text-center text-[14px] text-[#737373] leading-5 tracking-normal w-66">You haven’t created any tasks yet. Get
+started by creating your first task.</div>
+<div class="mt-2 flex gap-2">
+    <button class="bg-[#171717] text-white rounded-lg px-4 py-[7.5px] cursor-pointer" (click)="add()">Create Task</button>
+    <label  class="text-[#171717] bg-[#FFFFFF1A] px-4 py-[7.5px] rounded-lg border border-[#D4D4D4] shadow cursor-pointer" >
+        <input type="file" (change)="readtext($event)" class="sr-only"> Import Tasks</label>
+</div>
+</section>
+
+</main>

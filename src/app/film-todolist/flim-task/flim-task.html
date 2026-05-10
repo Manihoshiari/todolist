@@ -1,0 +1,24 @@
+<div class="bg-purple-900 h-screen flex flex-col justify-start items-center">
+    <app-header></app-header>
+    <div class="flex justify-start items-start w-200 mt-25 gap-5">
+        <main class="flex flex-col gap-3">
+            @for (item of users; track $index) {
+                    <app-users [id]="item.id" [name]="item.name" (userclick)="clickonuser($event)" [selected]="selecteduser===item.id"></app-users>
+            }
+
+
+        </main>
+      
+        <!-- @if (selectusers) {
+                <app-tasks [userid]="selectusers.id" [name]="selectusers.name"></app-tasks>
+        }
+        @else {
+            <p>choos person</p>
+        } -->
+
+
+
+
+    </div>
+</div>
+

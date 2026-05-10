@@ -1,0 +1,9 @@
+ul::-webkit-scrollbar-thumb{
+ width: 4px;
+ background-color: black;
+}
+ul::-webkit-scrollbar{
+    width: 3px;
+    background-color: purple;
+
+}

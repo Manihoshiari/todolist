@@ -1,0 +1,21 @@
+<dialog open class="m-auto p-5 rounded-lg bg-purple-700 w-100 flex justify-center min-h-100">
+    <form (ngSubmit)="onadd()">
+      <div class="my-4 flex flex-col"><label for="title">title:</label>
+            <input type="text" id="title" class="bg-purple-400 rounded-lg" autofocus [(ngModel)]="title" [ngModelOptions]="{standalone: true}">
+            </div>
+           
+   
+        <p class="my-4 flex flex-col ">
+            <label for="summary">summary:</label>
+            <textarea name="" class="bg-purple-400 rounded-lg ml-2" id="summary" rows=5 [(ngModel)]="summary" [ngModelOptions]="{standalone: true}"></textarea>
+        </p>
+        <p class="my-4 flex flex-col ">
+            <label for="duadate">duedate:</label>
+            <input class="bg-purple-400 rounded-lg" type="date" [(ngModel)]="duedate" [ngModelOptions]="{standalone: true}">
+        </p>
+        <div class="flex gap-3 justify-end  ">
+            <button class="bg-purple-900 p-2 rounded-lg" type="submit">create</button>
+            <button class="bg-purple-900 p-2 rounded-lg" routerLink="../">cancel</button>
+        </div>
+    </form>
+</dialog>

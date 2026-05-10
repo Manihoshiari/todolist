@@ -1,0 +1,20 @@
+<form #form="ngForm">
+    h2
+<div>
+    <label for="email">email:</label>
+    <input type="email" name="email" ngModel #email="ngModel" required >
+    @if (email.touched && email.invalid) {
+        <small class="text-red-600">invalid email</small>
+    }
+</div>
+    
+ <div>
+       <label for="pass"></label>
+    <input type="password" ngModel name="password" #password="ngModel" maxlength="8" required >
+    @if (password.touched && password.invalid ) {
+        <small class="text-red-600">invalid password</small>
+    }
+ </div>
+    
+    <button type="submit">submit</button>
+</form>

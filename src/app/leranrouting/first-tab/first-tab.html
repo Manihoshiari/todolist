@@ -1,0 +1,22 @@
+<form class="flex flex-col ml-10  mt-8" #form="ngForm" (ngSubmit)="addfoodname()"> 
+    <div class="flex gap-8 ">
+         <div class="flex flex-col ">
+        <label for="name">name</label>
+            <input type="text" class="w-100 border border-black rounded-b-sm h-8" name="name" ngModel #name="ngModel" required>
+  
+    </div>
+    <div class="flex flex-col">
+        <label for="amount">amount</label>
+            <input class="border border-black rounded-b-sm h-8" id="amount" required name="amount" type="number" ngModel #amount="ngModel">
+
+    </div>
+    </div>
+   
+    <div class="flex gap-2 mt-4">
+  <button class="bg-green-500 p-2 rounded-sm cursor-pointer " type="submit" [disabled]="form.form.invalid">add</button>
+<button  class="bg-red-600 p-2 rounded-sm cursor-pointer " (click)="deletefood()">delete</button>
+<button class="bg-blue-500 p-2 rounded-sm cursor-pointer " (click)="clear()">clear</button>
+    </div>  
+  
+</form>
+<hr class="w-[90%] bg-gray-300 mx-auto mt-8">

@@ -1,0 +1,22 @@
+
+@if (newtask) {
+    <app-addtask (cancel)="cancelclick()" (add)="onadd($event)"></app-addtask>
+}
+<section class="w-150 bg-purple-700  p-2 rounded-lg">
+    <div class="flex justify-between m-3">
+        <p >{{name}}s tasks</p>
+<button class="bg-purple-400 p-2 rounded-lg " (click)="addtask()">add task</button>
+
+    </div>
+    <ul class="max-h-60  overflow-y-scroll flex flex-col gap-3">
+        @for (task of selectedtaskuser; track $index) {
+            <li><app-task [task]="task" (remove)="removetasks($event)"></app-task></li>
+        }
+        
+        
+       
+    </ul>
+    
+
+</section>
+

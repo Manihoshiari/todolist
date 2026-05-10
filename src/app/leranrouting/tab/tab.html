@@ -1,0 +1,36 @@
+<nav >
+    
+<ul class="flex gap-8 w-screen h-15 items-center bg-gray-300 text-gray-700">
+    <h2 class="text-3xl">Recipe Book</h2>
+    <li><a>Recipes</a></li>
+    <li><a>Shopping list</a></li>
+    <li class="ml-auto"><a>manage</a></li>
+
+</ul>
+</nav>
+<p routerLink="/todolist">go to todolist</p>
+<ng-template directive>ino nabayad bbini</ng-template>
+<a href="https://zarebin.ir"    from="sakljflksajfl ">go to zarebin</a>
+<p>{{santi|darage}}</p>
+<p  >{{number|number:'1.1-3'}}</p>
+<p routerLink="./" [queryParams]="{role:order()==='asc'? 'dsc':'asc'}">
+    {{order()==='asc'?'desfsd':'mfjasklfj'}}
+</p>
+<p>{{adad}}</p>
+<app-first-tab (foodname)="addfood($event)" (clearfoods)="Clearfood()" (delete)="deletefood()"></app-first-tab>
+@if (names.length==0 ) {
+    
+}
+@else {
+      <div class="flex justify-center">
+     <div class="bg-gray-200 border  mt-5  rounded-b-sm w-[80%]">
+@for (item of names; track $index) {
+         <app-second-tab  [recipe]="item" ></app-second-tab>
+}
+</div>
+</div>
+}
+   
+  
+
+ 

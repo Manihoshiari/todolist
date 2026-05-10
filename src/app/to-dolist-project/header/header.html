@@ -1,0 +1,17 @@
+<header class="flex justify-between sm:mt-16 mt-6 ">
+
+    <div class="flex flex-col gap-2 leading-6">
+        <span class="block  font-semibold text-2xl ">Welcome Back!</span>
+        <span class="block text-[#737373] ">{{tasks().length===0 || visible() ? 'Don’t forget to add your new tasks for this month!':'Here’s a list of your tasks for this month.'}}</span>
+    </div>
+   <img src="assets/Rectangle 2.svg" alt="">
+
+</header>
+@if (tasks().length>0 &&!visible()) {
+<div class="flex justify-between gap-4 mt-8" >
+    <input type="text " [(ngModel)]="search" (ngModelChange)="onsearch($event)"
+        class=" border-[#E5E5E5] border shadow-xs sm:w-78  p-2 w-full  py-[9.5px] sm:py-2 rounded-lg"
+        placeholder="Filter tasks...">
+    <button class="bg-black text-white rounded-lg sm:px-3 px-6 sm:py-[5.5px] py-[9.5px] text-nowrap " (click)="addtask()">Add Task</button>
+</div>
+}

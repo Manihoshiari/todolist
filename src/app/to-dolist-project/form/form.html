@@ -1,0 +1,98 @@
+<div class="pb-20 w-full">
+  <form [formGroup]="reform"
+    class=" sm:border  border-[#E5E5E5] rounded-2xl sm:w-120   flex flex-col justify-center items-start sm:shadow-xs gap-6 mt-5 sm:mt-15 sm:p-6 ">
+
+    <div class="gap-2 flex flex-col w-full">
+      <h3 class="text-[#09090B] font-semibold text-[16px]">Create Task</h3>
+      <small class="text-[#737373] text-[14px]">Describe the issue task your up to.</small>
+    </div>
+    <div class=" gap-2 flex flex-col w-full relative">
+      <label for="taskname" class="font-medium  text-[14px]">Task Name</label>
+      <input autofocus required id="taskname" formControlName="taskname"
+        class="border border-[#E5E5E5] rounded-lg  shadow-xs px-3 py-1.75 " type="text">
+      @if(validatetaskname?.invalid &&submitted){
+      <small class="text-red-500 absolute top-full">taskname charecters should be more than 4</small>
+      }
+    </div>
+
+    <div class=" flex flex-col gap-1 w-full relative">
+      <label for="desc" class="font-medium text-[14px]">Description</label>
+      <textarea formControlName="desc" id="desc" name="desc" placeholder="Type your description here."
+        class=" text-black h-19 border border-[#E5E5E5] rounded-lg shadow-xs text-[14px]  leading-[150%] px-2 py-2 bg-white"></textarea>
+      @if(validatedesc?.invalid&& submitted){
+      <small class="text-red-500 absolute top-full">describtion charecters should be more than 4</small>
+      }
+    </div>
+    <div class="  flex flex-col gap-1 w-full ">
+      <label for="" class="text-[#0A0A0A] text-[14px] leading-[150%] font-medium">Assignees</label>
+      <div (click)="openassignees()"
+        class="w-full relative  flex justify-between items-center h-9 cursor-pointer  border rounded-lg shadow-xs border-[#D4D4D4] px-3  py-1.75 text-[#0A0A0A]">
+        <div>
+          {{select.length>0 ? select:'Select an assignee'}}
+          @if (assigneespage) {
+          <div  animate.leave="leaveanimation" animate.enter="animation"
+            class="border border-t-0  left-0 w-full transition-all rounded-t-lg absolute top-0 border-[#E5E5E5] flex flex-col bg-white z-99"
+            #outassign>
+            @for (item of names; track $index) {
+            <label class="hover:bg-gray-300 border-b bg-white border-[#E5E5E5] transition-all flex justify-between p-1"
+              [for]="item.name">{{item.name}}
+              <input (change)="closeassign($event)" formControlName="assignee" [value]="item.name" class="sr-only"
+                type="radio" [id]="item.name">
+              <img [src]="item.img" [alt]="item.name">
+            </label>
+            }
+          </div>}
+        </div>
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.75 0.75L4.75 4.75L8.75 0.75" stroke="#737373" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        @if (validateassignee?.invalid&&submitted) {
+        <small class="text-red-500 left-0 absolute top-full">should select an assignee</small>
+
+        }
+      </div>
+
+
+    </div>
+
+    <div class="  flex flex-col   gap-2 relative leading-[150%] w-full">
+      <label class="font-medium text-[14px]" for="date">Due Date</label>
+
+
+      <input type="date" formControlName="date" id="date" placeholder="pick a date"
+        class="border  border-[#E5E5E5] w-full rounded-lg shadow-xs px-3  py-1.75 ">
+
+      @if(submitted&& validatedate?.invalid){
+      <small class="text-red-500 absolute top-full">should choose a date</small>
+      }
+    </div>
+
+    <div class="font-medium flex flex-col relative gap-2 leading-[150%]">
+      <label for="prioity">priority</label>
+      <div class="bg-[#F5F5F5] rounded-xl h-10 p-1 flex items-center  ">
+        <label for="low"><input type="radio" formControlName="pr" value="low" id="low" checked class="sr-only peer">
+          <span class="peer-checked:bg-[#FFFFFF] peer-checked:shadow-sm rounded-xl  px-4 py-[5.5px]">Low</span></label>
+        <label for="Medium"><input type="radio" formControlName="pr" value="Medium" id="Medium"
+            class="sr-only peer"><span
+            class="peer-checked:bg-[#FFFFFF] peer-checked:shadow-sm rounded-xl  py-[5.5px] px-4">Medium </span></label>
+        <label for="High"><input type="radio" formControlName="pr" value="High" id="High" class="sr-only peer"><span
+            class="peer-checked:bg-[#FFFFFF] peer-checked:shadow-sm rounded-xl  py-[5.5px] px-4">High </span></label>
+      </div>
+      @if(validatepr?.invalid&& submitted){
+      <small class="text-red-500 absolute font-normal top-full">should choose a pririty</small>
+      }
+    </div>
+
+    <div class="flex gap-2 ">
+      <button class=" bg-[#171717] rounded-lg text-[#FAFAFA] font-medium text-[14px] text-center px-4 py-[7.5px]"
+        (click)="createtask()">Create Task</button>
+      <button class="border border-[#D4D4D4] shadow-sm  rounded-lg px-4 py-[7.5px]"
+        (click)="canceltask()">Cancel</button>
+    </div>
+
+  </form>
+
+
+
+</div>

@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+<div>
+    <label for="email">email:</label>
+    <input type="email" name="email"  formControlName="email" required  >
+    @if (validateemail) {
+<small class="text-red-600">invalid email</small>
+}
+</div>
+    
+ <div>
+       <label for="pass"></label>
+    <input type="password"  name="password" maxlength="8" required formControlName="password" >
+
+        @if (validatepass) {
+<small class="text-red-600">invalid password</small>
+}
+    
+ </div>
+    
+    <button type="submit">submit</button>
+    <button (click)="reset()">reset</button>
+</form>

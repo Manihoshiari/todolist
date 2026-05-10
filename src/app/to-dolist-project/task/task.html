@@ -1,0 +1,88 @@
+<div class=" p-4 shadow-xs border max-w-106.5 border-[#E5E5E5] rounded-xl flex flex-col gap-2.5   justify-center items-center ">
+    <div class=" flex justify-between w-full ">
+ 
+        <span class="font-semibold text-center rounded-lg  bg-[#EFF6FF] flex items-center gap-1 px-2 py-0.5"
+        [class.text-[#F8FAFC]]="newtask().taskstats" 
+            [class.bg-[#FEF2F2]]="newtask().taskstats==='Canceled'" 
+            [class.bg-[#EFF6FF]]="newtask().taskstats==='In Progress'" 
+             [class.bg-[#ECFDF5]]="newtask().taskstats==='Completed'" >
+
+           <span class=" ">
+            <svg width="8" [class.text-[#314158]]="newtask().taskstats" 
+            [class.text-red-700]="newtask().taskstats==='Canceled'" 
+            [class.text-blue-700]="newtask().taskstats==='In Progress'" 
+             [class.text-emerald-700]="newtask().taskstats==='Completed'" 
+             height="8" viewBox="0 0 8 8"  xmlns="http://www.w3.org/2000/svg">
+<circle cx="4" cy="4" r="4" fill="currentColor" d="..."/>
+</svg>
+
+        </span>
+        <span class="font-semibold text-[12px] "
+        [class.text-[#314158]]="newtask().taskstats" 
+            [class.text-red-700]="newtask().taskstats==='Canceled'" 
+            [class.text-blue-700]="newtask().taskstats==='In Progress'" 
+             [class.text-emerald-700]="newtask().taskstats==='Completed'" >
+            {{newtask().taskstats}}
+        </span>
+           
+        </span>
+        <span class="relative">
+                   <svg width="16" height="16" viewBox="0 0 24 24" fill="#333" (click)="opentaskstatus()" >
+  <circle cx="12" cy="5" r="2"/>
+  <circle cx="12" cy="12" r="2"/>
+  <circle cx="12" cy="19" r="2"/>
+</svg>
+@if (taskstatusisopen) {
+    <form class="flex flex-col font-normal text-sm border border-[#E5E5E5] rounded-lg text-gray-500 absolute bg-white top-0 right-0 ulstatus" #ulstats >
+    <label for="Backlog" class="border-b border-[#E5E5E5] text-center cursor-pointer hover:bg-gray-200 transition-all p-0.5 px-2 "  >Backlog
+        <input type="radio" id="Backlog" name="Backlog" class="sr-only"  (change)="show($event)" value="Backlog"  >
+    </label >
+    <label for="Canceled" class="border-b border-[#E5E5E5] text-center cursor-pointer hover:bg-gray-200 transition-all p-0.5 px-2"  >Canceled
+        <input type="radio" id="Canceled" name="Canceled" class="sr-only"  (change)="show($event)" value="Canceled">
+    </label >
+    <label for="Completed" class="border-b border-[#E5E5E5] text-center cursor-pointer hover:bg-gray-200 transition-all p-0.5 px-2"  >Completed
+        <input type="radio" id="Completed" name="Completed" class="sr-only"  (change)="show($event)" value="Completed">
+    </label >
+    <label for="In Progress" class="border-b  border-[#E5E5E5] text-center cursor-pointer hover:bg-gray-200 transition-all p-0.5 px-2  whitespace-nowrap  "  >In Progress
+        <input type="radio" id="In Progress"name="In Progress" class="sr-only"  (change)="show($event)" value="In Progress">
+    </label >
+    </form>
+}
+        </span>
+        
+
+
+    </div>
+<div class="w-full">
+    <h2 class="font-semibold text-[16px] ">{{newtask().taskname}}</h2>
+    <p class="line-clamp-1 truncate text-[#737373]">
+{{newtask().describion}}    
+</div>
+    <div class="w-full flex items-center justify-between">
+    <p  class="text-[14px] font-medium" >    Assignees:
+</p>
+<div>
+    <img [src]="selectedimg?.img" [alt]="selectedimg?.name">
+
+</div>
+</div>    
+<div class="flex justify-between w-full gap-2.5" >
+    <p class="text-[14px] font-normal text-[#737373]  w-27.5 h-5 flex gap-2 items-center ">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" (click)="flagchange()" [class]="newtask().flag ? 'text-red-500' : 'text-[#737373]'" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M3.00241 1.04764C3.50632 0.846074 4.25819 0.666626 5.33333 0.666626C6.4623 0.666626 7.3978 1.04095 8.21045 1.36612C8.22286 1.37108 8.23524 1.37603 8.24759 1.38097C9.09299 1.71913 9.81287 1.99996 10.6667 1.99996C11.5915 1.99996 12.173 1.84607 12.5024 1.71431C12.6677 1.64819 12.7726 1.58644 12.8281 1.54943C12.8558 1.53099 12.8716 1.51842 12.8768 1.51409C13.0673 1.33506 13.3458 1.28351 13.5885 1.38404C13.8376 1.48723 14 1.73032 14 1.99996V9.99996C14 10.1768 13.9298 10.3463 13.8047 10.4714L13.3333 9.99996C13.8047 10.4714 13.8044 10.4717 13.804 10.4721L13.8018 10.4742C13.8008 10.4752 13.7998 10.4763 13.7987 10.4774C13.7965 10.4795 13.7941 10.4818 13.7915 10.4843C13.7864 10.4892 13.7805 10.4947 13.7738 10.5007C13.7605 10.5128 13.7441 10.5271 13.7246 10.5432C13.6854 10.5755 13.6336 10.6149 13.5677 10.6588C13.4357 10.7468 13.249 10.8517 12.9976 10.9523C12.4937 11.1538 11.7418 11.3333 10.6667 11.3333C9.5377 11.3333 8.6022 10.959 7.78955 10.6338L7.75241 10.6189C6.90701 10.2808 6.18713 9.99996 5.33333 9.99996C4.40848 9.99996 3.82701 10.1538 3.49759 10.2856C3.3323 10.3517 3.2274 10.4135 3.17188 10.4505C3.14424 10.4689 3.12842 10.4815 3.12315 10.4858C2.93266 10.6649 2.65425 10.7164 2.41154 10.6159C2.16243 10.5127 2 10.2696 2 9.99996V1.99996C2 1.82315 2.07024 1.65358 2.19526 1.52855L2.66667 1.99996C2.19526 1.52855 2.19561 1.52821 2.19596 1.52786L2.19668 1.52714C2.19716 1.52666 2.19765 1.52617 2.19816 1.52567C2.19917 1.52467 2.20023 1.52364 2.20133 1.52256C2.20354 1.5204 2.20593 1.5181 2.2085 1.51564C2.21365 1.51073 2.21954 1.50523 2.22619 1.49918C2.2395 1.48708 2.25585 1.4728 2.27541 1.45669C2.31455 1.42446 2.36641 1.38501 2.43228 1.34109C2.56427 1.2531 2.75104 1.14819 3.00241 1.04764ZM3.33333 2.35866V8.93116C3.8184 8.78175 4.47216 8.66663 5.33333 8.66663C6.4623 8.66663 7.3978 9.04095 8.21045 9.36611L8.24759 9.38097C9.09299 9.71913 9.81287 9.99996 10.6667 9.99996C11.5915 9.99996 12.173 9.84607 12.5024 9.71431C12.5659 9.68893 12.6204 9.6642 12.6667 9.64126V3.06876C12.1816 3.21816 11.5278 3.33329 10.6667 3.33329C9.5377 3.33329 8.6022 2.95897 7.78955 2.6338C7.77714 2.62884 7.76476 2.62388 7.75241 2.61894C6.90701 2.28078 6.18713 1.99996 5.33333 1.99996C4.40848 1.99996 3.82701 2.15384 3.49759 2.28561C3.43415 2.31099 3.3796 2.33572 3.33333 2.35866ZM3.13669 10.4727L3.13672 10.4727L3.13678 10.4726C3.13675 10.4727 3.13672 10.4727 3.13669 10.4727Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M2.66667 9.33337C3.03486 9.33337 3.33333 9.63185 3.33333 10V14.6667C3.33333 15.0349 3.03486 15.3334 2.66667 15.3334C2.29848 15.3334 2 15.0349 2 14.6667V10C2 9.63185 2.29848 9.33337 2.66667 9.33337Z" fill="#737373"/>
+</svg>
+
+       {{newtask().date|date:'dd MMM yyyy'}}
+    </p>
+    <p [class.bg-[#FFEECB]]='newtask().pririty==="Medium"' 
+     [class.bg-red-200]="newtask().pririty==='High'"
+     [class.text-[#C10007]]="newtask().pririty==='High'"
+     [class.bg-green-200]="newtask().pririty==='low'"
+     [class.text-green-600]="newtask().pririty==='low'"
+
+      class="  text-[#BA6E00] text-center text-[12px]  font-medium rounded-lg py-0.5 flex flex-col justify-center  px-2">
+       {{newtask().pririty}}
+    </p>
+</div>
+</div>

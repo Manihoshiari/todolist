@@ -1,0 +1,31 @@
+<div class="flex min-h-screen flex-col justify-center ">
+       <app-header (searchvalue)="onsearch($event)" [tasks]="tasks" (addTask)="addheadernewtask()" [visible]="visible"></app-header>
+
+    @if (tasks.length===0 && !visible) {
+        <div class="flex justify-center items-center grow">
+   <app-addnewtask (importnewtask)="import($event)" (addnewtask)="add()"></app-addnewtask>
+</div>
+}
+
+   @if (visible) {
+        <div class="sm:flex sm:justify-center items-center grow">
+    <app-form (CancelTask)="canceltask()"  (newtask)="newtask($event)"></app-form>
+    </div>
+
+}
+@if (!visible && alltasks.length>0) {
+   <div class="grow pt-6">
+     <main class=" grid sm:grid-cols-2 grid-cols-1 2xl:grid-cols-4  md:grid-cols-3 items-stretch justify-center sm:justify-start  gap-2.5 ">
+       
+    @for (item of alltasks; track $index) {
+    <app-task  [newtask]="item" ></app-task>
+    
+}
+</main>
+   </div>
+}
+
+ 
+
+</div>
+

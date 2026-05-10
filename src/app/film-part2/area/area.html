@@ -1,0 +1,19 @@
+<button  buttoncomp>
+     but
+    <span ngProjectAs="butt" #input>1</span>
+</button>
+
+
+
+<form (submit)="formclick()" #form>
+    <input type="text" #inputname>
+
+
+
+    <input class="border border-black" type="text" [(ngModel)]="rectangle.width" [ngModelOptions]="{standalone: true}">
+    <input class="border border-black" type="text" [(ngModel)]="rectangle.height" [ngModelOptions]="{standalone: true}">
+    <button  >submit</button>
+</form>
+
+<app-rec [(size)]="rectangle"></app-rec>
+<app-reactiveform></app-reactiveform>
