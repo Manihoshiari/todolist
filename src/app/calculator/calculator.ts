@@ -9,7 +9,7 @@ import { buttons } from './calculator.model';
   styleUrl: './calculator.css',
 })
 export class Calculator {
-
+equalbool:boolean=false
   ParsedDisplay: number = 0
   Display: string = ''
   Operator: string = ''
@@ -209,13 +209,12 @@ export class Calculator {
   action(e: string) {
 
       this.FirstNumber = this.value
-  
+
     this.ParseNumberOne = parseFloat(this.FirstNumber)   
     
     this.Operator = e
     this.Display = ''
     this.value=''
-    
     this.Display+=e
     this.value+=e
     
@@ -226,7 +225,7 @@ export class Calculator {
     this.Display = ''
     this.Operator = ''
     this.FirstNumber=''
-    this.value=''
+    this.value=''  
   }
   
   percentNumber() {
