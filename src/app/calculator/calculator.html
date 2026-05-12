@@ -1,17 +1,17 @@
 <div class="h-screen bg-black text-white px-4  " tabindex="0" autofocus>
 <div class="flex justify-center items-center pb-4 h-screen flex-col">
-        <section class="flex lg:w-1/4 md:w-1/2 w-full h-screen flex-col sm:border p-2 rounded-xl sm:h-[80vh]  border-neutral-800 ">
-            <div class="text-white h-15 flex items-end pl-4 transition-all text-3xl " >{{FirstNumber}}</div>
+        <section class="flex lg:w-1/4 md:w-1/2 w-full h-screen flex-col sm:border p-2 gap-3 rounded-xl sm:h-[80vh]  border-neutral-800 ">
+            <div class="flex flex-col grow sm:border border-neutral-800 overflow-x-hidden rounded-lg">
+                <div class="text-white h-15 flex items-end pl-4 transition-all text-3xl " >{{FirstNumber}} </div>
             
-                <div class="text-3xl grow pl-4  mb-3 overflow-y-auto  text-white">
+                <div class="text-3xl grow pl-4  mb-3   text-white">
                 {{Display}}
             </div>
-            
-            
-
-                <div class="grid grid-cols-4 grid-rows-5 col-span-4  sm:h-[60vh] h-[65vh] items-stretch w-full gap-2  font-semibold">
+            </div>
+                <div class="grid grid-cols-4 grid-rows-5 col-span-4  sm:h-[60vh] h-[60vh] items-stretch w-full gap-2  font-semibold">
                    @for (item of Buttons; track $index) {
-                    <button class="bg-neutral-900 text-2xl border-2 border-neutral-800 hover:bg-neutral-800 rounded-xl transition-all" [class]="item.style" (click)="item.click($event)" >{{item.name}}</button>
+                    <button class="bg-neutral-900 text-2xl border-2 border-neutral-800 hover:bg-neutral-800 rounded-xl transition-all" 
+                    [class]="item.style" (click)="item.click($event)" >{{item.name}}</button>
                    }
                 </div>
             

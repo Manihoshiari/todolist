@@ -1,6 +1,7 @@
 import { DecimalPipe } from '@angular/common';
 import {  Component, HostListener } from '@angular/core';
 import { buttons } from './calculator.model';
+import { operate } from 'rxjs/internal/util/lift';
 
 @Component({
   selector: 'app-calculator',
@@ -9,8 +10,10 @@ import { buttons } from './calculator.model';
   styleUrl: './calculator.css',
 })
 export class Calculator {
+  equaltext:string='='
 
   ParsedDisplay: number = 0
+  percentboolean:boolean=false
   Display: string = ''
   Operator: string = ''
   FirstNumber: string = ''
@@ -18,7 +21,7 @@ export class Calculator {
   ParseNumberTwo: number = 0
   SecondNumber: string = ''
   value:string=''
-  
+  negativ!:boolean
   Buttons:buttons[]=[{
     name: 'C',
     click: (e:MouseEvent)=>{
@@ -159,34 +162,7 @@ export class Calculator {
   }
 ]
 
-  number(e: string) {
-    this.value +=e
-    let parts=this.value.split('.')
-    let int=parts[0]
-    let float=parts[1]
-    let result=''
-    let count=0
-    
-    for (let i = int.length-1; i >= 0; i--) {
-      result=int[i]+result
-      count++
-      if(count%3===0 && i!==0){
-        result=','+result
-
-        
-      }
-      
-    } 
-    
-    if(float){
-        result+='.'+float
-      }
-    this.Display=result
-
-
-  }
-
-  @HostListener('keydown', ['$event']) keydown(k: KeyboardEvent) {
+  @HostListener('window:keydown', ['$event']) keydown(k: KeyboardEvent) {
   
     if (('1234567890').includes(k.key)) {
       this.number(k.key)
@@ -205,20 +181,58 @@ export class Calculator {
       this.percentNumber()
     }
   }
-
-  action(e: string) {
-
-      this.FirstNumber = this.value
   
-    this.ParseNumberOne = parseFloat(this.FirstNumber)   
+  number(e: string) {
+    this.value +=e
+    let op=this.value.substring(0,1)
+    this.negativ=('-+/*').includes(op)
+    let negativevalue=this.negativ?this.value.slice(1):this.value
+    let parts=negativevalue.split('.')
+    let int=parts[0]
+    let float=parts[1]
+    let result=''
+    let count=0
+       for (let i = int.length-1; i >= 0; i--) {
+      result=int[i]+result
+      count++
+      if(count%3===0 && i!==0){
+        result=','+result       
+      }
     
+      
+    } 
+    
+    if(float){
+        result+='.'+float
+      }
+      if(this.negativ){
+        result=op+result
+      }
+      
+    this.Display=result
+
+
+  }
+
+
+  action(e: string) {    
+    if(!this.value.slice(1)&&this.FirstNumber!==''&&this.Operator!==''){
+      return
+    }
+   if(this.Operator!==''&&this.value!==''&&!this.negativ  ){
+    this.calc()
+    this.FirstNumber=this.value
+    
+   }else{
+    this.FirstNumber = this.value
+    this.ParseNumberOne = parseFloat(this.FirstNumber)  
+   }
+   
     this.Operator = e
     this.Display = ''
     this.value=''
-    
     this.Display+=e
     this.value+=e
-    
     
   }
 
@@ -230,18 +244,17 @@ export class Calculator {
   }
   
   percentNumber() {
-    
+    this.percentboolean=true
+    this.value=this.value.slice(1)
+    this.ParsedDisplay = parseFloat(this.value)
     if (this.Operator == '+' || this.Operator == '-') {
-      this.ParsedDisplay = parseFloat(this.value)
       this.ParsedDisplay = this.ParseNumberOne * (this.ParsedDisplay / 100)
-      this.value = this.ParsedDisplay.toString()
     }
     if (this.Operator == '*' || this.Operator == '/') {
-      this.ParsedDisplay = parseFloat(this.value)
       this.ParsedDisplay = (this.ParsedDisplay / 100)
-      this.value = this.ParsedDisplay.toString()
 
     }
+    this.value=this.ParsedDisplay.toString()
     this.Display=this.value
   }
   DeleteText() {
@@ -256,32 +269,34 @@ export class Calculator {
     
 
   }
-  equal() {
-    
-    this.SecondNumber = this.value.slice(1)
+  calc(){
+    if(this.value.slice(1)===''){
+      return
+    }
+    this.SecondNumber=this.percentboolean?this.value:this.value.slice(1)
     this.ParseNumberTwo = parseFloat(this.SecondNumber)
-    
-    
     if (this.Operator === '+') {
       this.ParseNumberOne += this.ParseNumberTwo
-      this.value = this.ParseNumberOne.toString()
-    } else if (this.Operator === '-') {
-      console.log(this.ParseNumberOne,this.ParseNumberTwo);
       
-      this.ParseNumberOne =this.ParseNumberOne- this.ParseNumberTwo
-
-      this.value = this.ParseNumberOne.toString()
+    } else if (this.Operator === '-') {     
+      this.ParseNumberOne =this.ParseNumberOne- this.ParseNumberTwo 
     } else if (this.Operator === '*') {
       this.ParseNumberOne *= this.ParseNumberTwo
-      this.value = this.ParseNumberOne.toString()
+      
     } else if (this.Operator === "/") {
       this.ParseNumberOne /= this.ParseNumberTwo
-      this.value = this.ParseNumberOne.toString()
+      
     }
+    this.value = this.ParseNumberOne.toString()
     this.Operator = ''
-    
     this.FirstNumber = ''
     this.Display=Number(this.value).toLocaleString()
+this.percentboolean=false
+  }
+  equal() {
+    console.log(this.FirstNumber,this.SecondNumber);
+    
+   this.calc()
   }
 
   AddDot(e: string){
