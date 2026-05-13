@@ -19,7 +19,8 @@ A simple calculator application built with Angular. This project supports basic 
 - TypeScript
 - HTML
 - CSS
-
+- tailwindcss
+  
 ## Installation
 
 1. Clone the repository:
