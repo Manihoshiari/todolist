@@ -35,7 +35,7 @@ Run the Project
 
 To start the development server, run:
 
-ng serve
+ng serve or npm start
 
 After running the command, open your browser and go to:
 
