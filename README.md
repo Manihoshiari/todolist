@@ -79,7 +79,29 @@ ng e2e
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
+## Usage
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This calculator is designed for simple and quick calculations. You can interact with it using the on-screen buttons.
 
+### Supported Operations
+
+- Enter numbers using the numeric buttons (`0-9`)
+- Press `+` for addition
+- Press `-` for subtraction
+- Press `×` for multiplication
+- Press `÷` for division
+- Press `.` to enter decimal numbers
+- Press `%` to calculate percentages
+- Press `=` to display the result
+- Press `C` to clear/reset the screen
+
+### Example Calculations
+
+| Operation | Result |
+|-----------|--------|
+| `12 + 8` | `20` |
+| `7.5 - 2.5` | `5` |
+| `4 × 3` | `12` |
+| `20 ÷ 5` | `4` |
+| `10.5 + 2.3` | `12.8` |
+| `50 %` | `0.5` |
