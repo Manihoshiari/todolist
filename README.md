@@ -105,3 +105,11 @@ This calculator is designed for simple and quick calculations. You can interact 
 | `20 ÷ 5` | `4` |
 | `10.5 + 2.3` | `12.8` |
 | `50 %` | `0.5` |
+## Challenges
+
+During the development of this project, some challenges included:
+
+- Handling decimal number inputs correctly
+- Implementing percentage calculations
+- Managing consecutive operations without errors
+- Creating and using a custom separator for formatting numbers
