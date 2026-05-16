@@ -10,8 +10,6 @@ import { operate } from 'rxjs/internal/util/lift';
   styleUrl: './calculator.css',
 })
 export class Calculator {
-  equaltext:string='='
-
   ParsedDisplay: number = 0
   percentboolean:boolean=false
   Display: string = ''
@@ -294,8 +292,7 @@ export class Calculator {
 this.percentboolean=false
   }
   equal() {
-    console.log(this.FirstNumber,this.SecondNumber);
-    
+
    this.calc()
   }
 

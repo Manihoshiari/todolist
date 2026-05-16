@@ -25,7 +25,7 @@ export const routes: Routes = [
     },
    {
     path:'',
-    component:Calculator,
+    component:ToDoList,
 
    },{
     path:'search',
